@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic HTML - In-Depth Guide</title>
+</head>
+<body>
+    <!-- 
+        📚 STEP 1️⃣  - HTML FUNDAMENTALS: SEMANTIC HTML
+        
+        PREREQUISITE: None - Start here!
+        TIME TO COMPLETE: 2-3 days
+        DIFFICULTY: Beginner
+        
+        WHAT YOU'LL LEARN:
+        • What semantic HTML is and why it matters
+        • Structural HTML elements for page layout
+        • Accessibility features and attributes
+        • SEO best practices
+        • Proper document structure
+        
+        KEY CONCEPTS TO UNDERSTAND:
+        1. Semantic HTML uses meaningful tags that clearly describe content
+        2. Better than using <div> for everything
+        3. Improves accessibility for screen readers
+        4. Helps search engines understand your content
+        5. Makes code more maintainable and readable
+        
+        NEXT STEPS AFTER THIS FILE:
+        → Study form-validation.html to learn all form input types
+        → Then move to CSS fundamentals
+    -->
+    
+    <!-- 
+        SEMANTIC HTML GUIDE
+        Semantic HTML uses meaningful tags that clearly describe the content's purpose.
+        Benefits: Better SEO, Accessibility, Readability, Maintainability
+    -->
+
+    <!-- HEADER SECTION -->
+    <header role="banner">
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main role="main">
+        <!-- HERO SECTION -->
+        <article>
+            <section aria-labelledby="hero-title">
+                <h1 id="hero-title">Welcome to Semantic HTML</h1>
+                <p>Learn the proper way to structure web documents for accessibility and SEO.</p>
+            </section>
+        </article>
+
+        <!-- ARTICLE SECTION -->
+        <article>
+            <header>
+                <h2>Understanding Semantic Tags</h2>
+                <p><time datetime="2024-01-12">January 12, 2024</time> | By Developer</p>
+            </header>
+            
+            <section>
+                <h3>Common Semantic Tags</h3>
+                
+                <!-- STRUCTURED DEFINITION LIST -->
+                <dl>
+                    <dt>&lt;header&gt;</dt>
+                    <dd>Represents introductory content or navigation aids at the top of a page or section</dd>
+                    
+                    <dt>&lt;nav&gt;</dt>
+                    <dd>Contains navigation links for major site navigation</dd>
+                    
+                    <dt>&lt;main&gt;</dt>
+                    <dd>Specifies the main content of the document (use once per page)</dd>
+                    
+                    <dt>&lt;article&gt;</dt>
+                    <dd>Represents self-contained, distributable content (blog post, news article)</dd>
+                    
+                    <dt>&lt;section&gt;</dt>
+                    <dd>Groups related content thematically</dd>
+                    
+                    <dt>&lt;aside&gt;</dt>
+                    <dd>Sidebar or supplementary content, indirectly related to the main content</dd>
+                    
+                    <dt>&lt;footer&gt;</dt>
+                    <dd>Contains footer information like copyright, links, or contact info</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h3>Forms with Semantic Structure</h3>
+                <!-- FORM WITH PROPER LABELS -->
+                <form>
+                    <fieldset>
+                        <legend>User Information</legend>
+                        
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required aria-required="true">
+                        
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                        
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required aria-required="true">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Preferences</legend>
+                        
+                        <label>
+                            <input type="checkbox" name="newsletter" value="yes"> Subscribe to newsletter
+                        </label>
+                        
+                        <label>
+                            <input type="radio" name="experience" value="beginner"> Beginner
+                        </label>
+                        <label>
+                            <input type="radio" name="experience" value="intermediate"> Intermediate
+                        </label>
+                        <label>
+                            <input type="radio" name="experience" value="advanced"> Advanced
+                        </label>
+                    </fieldset>
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+
+            <section>
+                <h3>Data and Content Markup</h3>
+                
+                <!-- CODE EXAMPLES -->
+                <figure>
+                    <code>
+                        &lt;strong&gt;Important text&lt;/strong&gt; - Indicates strong importance<br>
+                        &lt;em&gt;Emphasized text&lt;/em&gt; - Indicates emphasis or stress<br>
+                        &lt;mark&gt;Highlighted text&lt;/mark&gt; - Marks or highlights text<br>
+                        &lt;small&gt;Fine print&lt;/small&gt; - Small or fine print<br>
+                        &lt;del&gt;Deleted text&lt;/del&gt; - Deleted or removed content<br>
+                        &lt;ins&gt;Inserted text&lt;/ins&gt; - Inserted or added content
+                    </code>
+                    <figcaption>Common text-level semantic elements</figcaption>
+                </figure>
+            </section>
+
+            <section>
+                <h3>Structured Data with Details/Summary</h3>
+                
+                <!-- DISCLOSURE WIDGET -->
+                <details>
+                    <summary>Click to expand: What is semantic HTML?</summary>
+                    <p>Semantic HTML is the use of HTML markup to reinforce the meaning of the content in the page rather than merely to define its appearance.</p>
+                </details>
+            </section>
+
+            <!-- FOOTER OF ARTICLE -->
+            <footer>
+                <p><small>Published on <time datetime="2024-01-12T10:30:00Z">January 12, 2024</time></small></p>
+            </footer>
+        </article>
+
+        <!-- SIDEBAR CONTENT -->
+        <aside role="complementary" aria-labelledby="related-heading">
+            <h3 id="related-heading">Related Topics</h3>
+            <ul>
+                <li><a href="#">HTML Accessibility</a></li>
+                <li><a href="#">SEO Best Practices</a></li>
+                <li><a href="#">Web Standards</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer role="contentinfo">
+        <section>
+            <h3>Footer Navigation</h3>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Contact Info</h3>
+            <address>
+                Email: <a href="mailto:info@example.com">info@example.com</a><br>
+                Phone: <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </address>
+        </section>
+        
+        <p>&copy; 2024 Learning Resources. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

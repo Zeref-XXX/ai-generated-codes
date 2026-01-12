@@ -1,0 +1,441 @@
+/* 
+  📚 STEP 2️⃣  - CSS FUNDAMENTALS: LAYOUT SYSTEMS
+  
+  PREREQUISITE: selectors-specificity.css
+  TIME TO COMPLETE: 2 days
+  DIFFICULTY: Intermediate
+  
+  WHAT YOU'LL LEARN:
+  • Flexbox - one-dimensional layouts
+  • CSS Grid - two-dimensional layouts
+  • Positioning - moving elements out of normal flow
+  • Responsive design with media queries
+  • Common layout patterns
+  
+  KEY CONCEPTS TO UNDERSTAND:
+  1. Normal flow: Default way browsers lay out elements
+  2. Flexbox: Great for components, navigation, single-row/column layouts
+  3. Grid: Great for page layouts, complex two-dimensional designs
+  4. Positioning: For overlays, sticky elements, absolute positioning
+  5. Responsive: Mobile-first approach, breakpoints for different screen sizes
+  
+  WHICH LAYOUT TO USE:
+  • One-dimensional (row OR column): Flexbox
+  • Two-dimensional (rows AND columns): CSS Grid
+  • Overlaying content: Positioning
+  • Component within component: Often Flexbox
+  • Whole page layout: Often Grid
+  
+  IMPORTANT LEARNING NOTES:
+  • Flexbox and Grid are the modern ways - forget floats!
+  • Each layout method has specific properties
+  • Responsive design is essential for modern web
+  • Mobile-first means: code for mobile, then add styles for larger screens
+  • Practice with common layouts (Holy Grail, sidebar, card grid)
+  
+  COMMON LAYOUT PATTERNS YOU'LL BUILD:
+  1. Navigation bar (Flexbox)
+  2. Sidebar + content (Grid or Flexbox)
+  3. Card grid (Grid with auto-fit)
+  4. Modal overlay (Positioning)
+  5. Sticky header (Position sticky)
+  
+  NEXT STEPS AFTER THIS FILE:
+  → Move to animations-transforms.css for visual effects
+  → Then move to JavaScript to make layouts interactive
+*/
+
+/* ===== FLEXBOX LAYOUT ===== */
+/* 
+  Flexbox is a one-dimensional layout model
+  Perfect for components and small-scale layouts
+  Properties: display, flex-direction, justify-content, align-items, etc.
+*/
+
+.flex-container {
+  display: flex;
+  flex-direction: row; /* row | row-reverse | column | column-reverse */
+  justify-content: space-between; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+  align-items: center; /* flex-start | flex-end | center | stretch | baseline */
+  flex-wrap: wrap; /* nowrap | wrap | wrap-reverse */
+  gap: 20px; /* Space between items */
+  height: 100%;
+}
+
+.flex-item {
+  flex: 1; /* Shorthand for flex-grow flex-shrink flex-basis */
+  /* Individual properties: */
+  flex-grow: 1; /* Growth factor */
+  flex-shrink: 1; /* Shrink factor */
+  flex-basis: auto; /* Base size before growing/shrinking */
+  
+  align-self: auto; /* Override container's align-items */
+  order: 0; /* Change visual order */
+}
+
+/* Flexbox examples */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  flex: 0 0 auto;
+}
+
+/* Flexible spacing */
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Holy Grail Layout with Flexbox */
+.holy-grail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.holy-grail-header {
+  flex-shrink: 0; /* Don't shrink */
+}
+
+.holy-grail-body {
+  display: flex;
+  flex: 1; /* Grow to fill available space */
+}
+
+.holy-grail-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.holy-grail-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.holy-grail-footer {
+  flex-shrink: 0;
+}
+
+/* ===== CSS GRID LAYOUT ===== */
+/* 
+  Grid is a two-dimensional layout model
+  Perfect for page layouts and complex designs
+  Properties: display, grid-template-columns, grid-template-rows, etc.
+*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-rows: auto; /* Rows auto-size */
+  gap: 20px; /* Space between grid items */
+  grid-auto-flow: row; /* row | column | dense */
+}
+
+/* Grid with specific sizes */
+.grid-complex {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px; /* Fixed, flexible, fixed */
+  grid-template-rows: 60px 1fr 60px; /* Header, content, footer */
+  gap: 10px;
+  min-height: 100vh;
+}
+
+/* Grid with named areas */
+.grid-named {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "footer footer footer";
+  gap: 10px;
+}
+
+.grid-header {
+  grid-area: header;
+}
+
+.grid-sidebar {
+  grid-area: sidebar;
+}
+
+.grid-content {
+  grid-area: content;
+}
+
+.grid-footer {
+  grid-area: footer;
+}
+
+/* Grid item properties */
+.grid-item {
+  grid-column: span 2; /* Span 2 columns */
+  grid-row: span 1; /* Span 1 row */
+  
+  /* Or specific positioning: */
+  /* grid-column: 1 / 3; */
+  /* grid-row: 1 / 4; */
+}
+
+/* Auto-fit responsive grid */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Auto-fill grid */
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+/* ===== FLOAT LAYOUT (Legacy) ===== */
+/* 
+  Float was originally designed for wrapping text around images
+  Now mostly replaced by Flexbox and Grid, but still used for specific layouts
+*/
+
+.float-container {
+  overflow: auto; /* Contain floats */
+}
+
+.float-left {
+  float: left;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.float-right {
+  float: right;
+  width: 20%;
+  margin-left: 20px;
+}
+
+/* Clearing floats */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ===== POSITIONING ===== */
+/* 
+  Positioning takes elements out of normal document flow
+  Values: static (default) | relative | absolute | fixed | sticky
+*/
+
+.static-position {
+  position: static; /* Default - normal flow */
+}
+
+.relative-position {
+  position: relative; /* Relative to normal position */
+  top: 10px;
+  left: 10px;
+  /* Still takes up space in document flow */
+}
+
+.absolute-position {
+  position: absolute; /* Absolute to nearest positioned ancestor */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center it */
+  /* Does not take up space */
+}
+
+.fixed-position {
+  position: fixed; /* Fixed to viewport */
+  top: 0;
+  right: 0;
+  width: 300px;
+  /* Stays in place when scrolling */
+}
+
+.sticky-position {
+  position: sticky; /* Sticks when scrolling reaches it */
+  top: 0;
+  background-color: white;
+  /* Still takes up space until activated */
+}
+
+/* Stacking context with z-index */
+.z-index-low {
+  position: relative;
+  z-index: 1;
+}
+
+.z-index-high {
+  position: relative;
+  z-index: 10;
+}
+
+/* ===== DISPLAY PROPERTIES ===== */
+
+.display-block {
+  display: block; /* Takes full width, respects margin/padding */
+}
+
+.display-inline {
+  display: inline; /* Flows with text, ignores height/width */
+}
+
+.display-inline-block {
+  display: inline-block; /* Flows inline but respects size properties */
+}
+
+.display-none {
+  display: none; /* Removes from layout completely */
+}
+
+.visibility-hidden {
+  visibility: hidden; /* Hides but reserves space */
+}
+
+/* ===== MODERN LAYOUT TECHNIQUES ===== */
+
+/* Sidebar + Content with Grid */
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 3fr;
+  gap: 2rem;
+}
+
+/* Flexible card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Nested flexbox */
+.flex-nested {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-nested > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ===== RESPONSIVE LAYOUT WITH MEDIA QUERIES ===== */
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sidebar-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .holy-grail-body {
+    flex-direction: column;
+  }
+  
+  .holy-grail-sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .navbar-menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== ASPECT RATIO ===== */
+
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover; /* For images */
+}
+
+.aspect-ratio-square {
+  aspect-ratio: 1;
+}
+
+/* ===== OVERFLOW AND SCROLLING ===== */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-auto {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* ===== Z-INDEX STACKING CONTEXT ===== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  z-index: 101; /* Higher than backdrop */
+}

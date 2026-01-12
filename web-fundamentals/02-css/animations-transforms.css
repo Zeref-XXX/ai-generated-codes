@@ -1,0 +1,441 @@
+/* 
+  📚 STEP 2️⃣  - CSS FUNDAMENTALS: ANIMATIONS & TRANSFORMS
+  
+  PREREQUISITE: layout-systems.css
+  TIME TO COMPLETE: 2 days
+  DIFFICULTY: Intermediate
+  
+  WHAT YOU'LL LEARN:
+  • 2D and 3D transforms (rotate, scale, translate, skew)
+  • CSS transitions (smooth property changes)
+  • Keyframe animations (multi-step animations)
+  • Animation timing and easing functions
+  • Performance optimization
+  
+  KEY CONCEPTS TO UNDERSTAND:
+  1. Transforms don't affect layout (very performant)
+  2. Transitions animate property changes smoothly
+  3. Animations can have multiple keyframes for complex effects
+  4. Use transform and opacity for best performance
+  5. Avoid animating width, height, position (triggers layout recalculation)
+  
+  TRANSFORMS: Change appearance without affecting layout
+  • translate: Move element
+  • scale: Resize element
+  • rotate: Spin element
+  • skew: Distort element
+  • 3D versions: translate3d, rotateX, rotateY, etc.
+  
+  TRANSITIONS: Smooth animation between property changes
+  • Syntax: transition: property duration easing-function delay
+  • Example: transition: background-color 0.3s ease 0.1s
+  
+  ANIMATIONS: Multi-step animations with @keyframes
+  • Define animation with @keyframes
+  • Use animation property to apply it
+  • Can repeat infinite times
+  
+  IMPORTANT LEARNING NOTES:
+  • Transforms are GPU-accelerated (fast!)
+  • Transitions are great for interactive states (hover, focus)
+  • Animations are for complex sequences
+  • Always test performance with DevTools
+  • Use will-change sparingly for expensive animations
+  
+  COMMON ANIMATION PATTERNS:
+  1. Hover effects (scale, color change)
+  2. Loading spinners (rotate animation)
+  3. Fade in/out (opacity animation)
+  4. Slide in (translate animation)
+  5. Bounce effects (multiple keyframes)
+  6. Pulsing effects (opacity or scale pulse)
+  
+  NEXT STEPS AFTER THIS FILE:
+  → Move to JavaScript fundamentals (fundamentals.js)
+  → Learn to trigger animations with JavaScript
+  → Build interactive animated components
+*/
+
+/* ===== 2D TRANSFORMS ===== */
+/* 
+  Transforms don't affect document flow
+  Use transform property for better performance
+*/
+
+/* Translate - Move element */
+.transform-translate {
+  transform: translate(50px, 100px); /* x, y */
+  /* or: translateX(50px); translateY(100px); */
+}
+
+/* Scale - Resize element */
+.transform-scale {
+  transform: scale(1.5); /* uniform scale */
+  /* or: scaleX(2); scaleY(0.5); */
+  transform-origin: center center; /* Origin point for transformation */
+}
+
+/* Rotate - Spin element */
+.transform-rotate {
+  transform: rotate(45deg); /* clockwise rotation */
+  transform-origin: center center;
+}
+
+/* Skew - Distort element */
+.transform-skew {
+  transform: skew(20deg, 10deg); /* skewX, skewY */
+  /* or: skewX(45deg); skewY(20deg); */
+}
+
+/* Multiple transforms */
+.transform-multiple {
+  transform: translate(50px, 100px) rotate(45deg) scale(1.2);
+}
+
+/* ===== 3D TRANSFORMS ===== */
+
+.perspective-container {
+  perspective: 1000px; /* Create 3D space */
+}
+
+/* 3D Translate */
+.transform-3d-translate {
+  transform: translate3d(50px, 100px, 200px);
+  /* or: translateZ(200px); */
+}
+
+/* 3D Scale */
+.transform-3d-scale {
+  transform: scale3d(1.5, 1.5, 1.5);
+}
+
+/* 3D Rotate */
+.transform-3d-rotate {
+  transform: rotateX(45deg); /* Rotate around X axis */
+  /* rotateY(45deg); rotateZ(45deg); */
+  transform-style: preserve-3d; /* Children maintain 3D space */
+}
+
+/* Flip effect */
+.flip-card {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide back when rotated */
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: lightblue;
+}
+
+/* ===== TRANSITIONS ===== */
+/* 
+  Smooth animation between property changes
+  Properties: property, duration, timing-function, delay
+*/
+
+.transition-simple {
+  background-color: blue;
+  transition: background-color 0.3s ease;
+}
+
+.transition-simple:hover {
+  background-color: red;
+}
+
+/* Multiple properties */
+.transition-multiple {
+  background-color: blue;
+  color: white;
+  opacity: 1;
+  transition: 
+    background-color 0.3s ease,
+    color 0.5s ease,
+    opacity 0.2s linear;
+}
+
+/* Transition all properties */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Timing functions */
+.timing-linear {
+  transition: all 1s linear; /* Constant speed */
+}
+
+.timing-ease {
+  transition: all 1s ease; /* Slow start, fast middle, slow end (default) */
+}
+
+.timing-ease-in {
+  transition: all 1s ease-in; /* Slow start, fast end */
+}
+
+.timing-ease-out {
+  transition: all 1s ease-out; /* Fast start, slow end */
+}
+
+.timing-ease-in-out {
+  transition: all 1s ease-in-out; /* Slow start and end, fast middle */
+}
+
+/* Custom cubic-bezier */
+.timing-custom {
+  transition: all 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+/* Transition with delay */
+.transition-delay {
+  transition: all 0.3s ease 0.5s; /* 0.5s delay before starting */
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+/* 
+  Define multi-step animations
+  Can be reused multiple times
+*/
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Multiple keyframe stops */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Rotating animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotate 2s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    border-right: 3px solid black;
+  }
+  50%, 100% {
+    border-right: 3px solid transparent;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink 0.75s step-end infinite;
+}
+
+/* ===== ANIMATION PROPERTIES ===== */
+
+.animation-timing {
+  animation: slide-in 1s; /* animation-duration */
+  animation-delay: 0.5s; /* Delay before animation starts */
+  animation-iteration-count: 3; /* How many times to play (or infinite) */
+  animation-direction: normal; /* normal | reverse | alternate | alternate-reverse */
+  animation-fill-mode: forwards; /* none | forwards | backwards | both */
+  animation-play-state: running; /* running | paused */
+  animation-timing-function: ease-in-out; /* ease, linear, ease-in, ease-out, etc. */
+}
+
+/* Animation shorthand */
+.animation-shorthand {
+  animation: slide-in 1s ease-in-out 0.5s 2 forwards;
+}
+
+/* Pause animation on hover */
+.animation-pause-hover:hover {
+  animation-play-state: paused;
+}
+
+/* ===== PERFORMANCE CONSIDERATIONS ===== */
+
+/* Use transform and opacity for best performance */
+.performant-animation {
+  animation: performantMove 1s ease-in-out infinite;
+}
+
+@keyframes performantMove {
+  0% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100px);
+    opacity: 0.8;
+  }
+}
+
+/* Avoid animating: width, height, position (left, top), etc. */
+/* These trigger layout recalculation (expensive) */
+
+/* ===== COMBINED EXAMPLES ===== */
+
+/* Loading spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ffff00,
+    #00ff00,
+    #00ffff,
+    #0000ff,
+    #ff00ff
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Hover effect */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.1);
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== WILL-CHANGE PROPERTY ===== */
+/* 
+  Hint to browser that element will animate
+  Use sparingly - improves performance for expensive animations
+*/
+
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation */
+.will-animate:hover {
+  will-change: transform, opacity;
+}
+
+.will-animate:not(:hover) {
+  will-change: auto;
+}

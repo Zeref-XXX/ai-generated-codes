@@ -1,0 +1,383 @@
+/* 
+  📚 STEP 2️⃣  - CSS FUNDAMENTALS: SELECTORS & SPECIFICITY
+  
+  PREREQUISITE: semantic-html.html + form-validation.html
+  TIME TO COMPLETE: 2-3 days
+  DIFFICULTY: Beginner to Intermediate
+  
+  WHAT YOU'LL LEARN:
+  • How to select HTML elements using CSS
+  • How to target elements precisely
+  • Understanding CSS specificity
+  • The CSS cascade and inheritance
+  • When to use different selector types
+  
+  KEY CONCEPTS TO UNDERSTAND:
+  1. Selectors are patterns that match HTML elements
+  2. Different selector types have different specificity values
+  3. Specificity determines which style is applied when there's a conflict
+  4. CSS cascade: Author > User Agent > Cascade
+  5. Inheritance: Some properties pass down from parent to child
+  
+  SPECIFICITY CALCULATION:
+  • Inline styles (style="..."): 1000 points
+  • IDs: 100 points
+  • Classes, attributes, pseudo-classes: 10 points
+  • Elements, pseudo-elements: 1 point
+  
+  IMPORTANT LEARNING NOTES:
+  • Master basic selectors first (elements, classes, IDs)
+  • Then learn pseudo-classes and pseudo-elements
+  • Practice calculating specificity - it's crucial!
+  • Avoid using too many IDs and inline styles
+  • Keep selectors simple and maintainable
+  
+  NEXT STEPS AFTER THIS FILE:
+  → Move to layout-systems.css to learn how to arrange elements
+  → Then animations-transforms.css for visual effects
+  → You'll use these selectors with every CSS file you write!
+*/
+
+/* ===== ELEMENT SELECTORS ===== */
+/* Specificity: 0,0,0,1 */
+p {
+  color: black;
+  line-height: 1.6;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== CLASS SELECTORS ===== */
+/* Specificity: 0,0,1,0 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.button-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* ===== ID SELECTORS ===== */
+/* Specificity: 0,0,0,100 - Use sparingly! */
+#main-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 0;
+}
+
+#sidebar {
+  width: 25%;
+  float: left;
+}
+
+/* ===== ATTRIBUTE SELECTORS ===== */
+/* Specificity: 0,0,1,0 (same as class) */
+
+/* Exact match */
+input[type="text"] {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+/* Attribute contains */
+a[href*="example"] {
+  color: orange;
+}
+
+/* Attribute starts with */
+a[href^="https"] {
+  padding-right: 20px;
+}
+
+/* Attribute ends with */
+a[href$=".pdf"] {
+  background-image: url('pdf-icon.png');
+  padding-right: 20px;
+}
+
+/* Attribute contains word (space-separated) */
+[data-category~="featured"] {
+  font-weight: bold;
+}
+
+/* Attribute with exact or starts with hyphen */
+[lang|="en"] {
+  font-family: 'Arial', sans-serif;
+}
+
+/* ===== PSEUDO-CLASS SELECTORS ===== */
+/* Specificity: 0,0,1,0 */
+
+/* Structural pseudo-classes */
+li:first-child {
+  margin-top: 0;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+li:nth-child(2n) {
+  background-color: #f0f0f0;
+}
+
+li:nth-child(3n+1) {
+  color: navy;
+}
+
+li:nth-of-type(odd) {
+  background-color: white;
+}
+
+li:only-child {
+  font-weight: bold;
+}
+
+/* User interaction pseudo-classes */
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+
+a:visited {
+  color: purple;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: darkblue;
+}
+
+a:active {
+  color: red;
+}
+
+/* Focus pseudo-class */
+input:focus {
+  outline: 2px solid #007bff;
+  background-color: #f0f8ff;
+}
+
+/* Form-related pseudo-classes */
+input:checked {
+  accent-color: green;
+}
+
+input:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+input:enabled {
+  cursor: pointer;
+}
+
+input:required {
+  border-color: red;
+}
+
+input:valid {
+  border-color: green;
+}
+
+input:invalid {
+  border-color: red;
+}
+
+/* ===== PSEUDO-ELEMENT SELECTORS ===== */
+/* Specificity: 0,0,1,0 */
+
+p::first-line {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+p::first-letter {
+  font-size: 2em;
+  font-weight: bold;
+  float: left;
+  margin-right: 5px;
+}
+
+/* Content pseudo-elements */
+a::before {
+  content: "🔗 ";
+}
+
+q::before {
+  content: "\"";
+}
+
+q::after {
+  content: "\"";
+}
+
+/* Selection pseudo-element */
+::selection {
+  background-color: yellow;
+  color: black;
+}
+
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* ===== COMBINATOR SELECTORS ===== */
+
+/* Descendant combinator (space) - Selects all descendants */
+/* Specificity: sum of both parts */
+.container p {
+  margin-bottom: 1rem;
+}
+
+article h2 {
+  color: #333;
+}
+
+/* Child combinator (>) - Direct children only */
+.menu > li {
+  display: inline-block;
+}
+
+/* Adjacent sibling combinator (+) - Next sibling only */
+h2 + p {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+/* General sibling combinator (~) - All following siblings */
+h3 ~ p {
+  color: #666;
+}
+
+/* ===== COMPLEX SELECTORS ===== */
+
+/* Multiple selectors (comma) - OR operator */
+/* Specificity: 0,0,1,0 */
+h1, h2, h3 {
+  font-family: 'Georgia', serif;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Combining multiple types */
+/* Specificity: 0,0,2,2 */
+.container .content > article.featured {
+  border: 2px solid gold;
+  padding: 20px;
+  background-color: #fffacd;
+}
+
+/* Element with multiple classes */
+/* Specificity: 0,0,2,1 */
+button.btn.btn-large {
+  font-size: 18px;
+  padding: 15px 30px;
+}
+
+/* ===== NEGATION PSEUDO-CLASS ===== */
+/* Specificity: 0,0,1,0 */
+li:not(.disabled) {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+li:not(.disabled):hover {
+  background-color: #f5f5f5;
+}
+
+/* ===== IS and WHERE PSEUDO-CLASSES ===== */
+/* :is() and :where() - :is() counts specificity of most specific selector */
+/* Specificity: :is(0,0,1,0) | :where(0,0,0,0) */
+:is(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+:where(.nav, .menu) > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* ===== HAS PSEUDO-CLASS (Experimental) ===== */
+/* Selects elements that contain specific children */
+div:has(> img) {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* ===== MEDIA QUERIES (Not selectors, but important CSS) ===== */
+/* Responsive design using media features */
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  #sidebar {
+    width: 100%;
+    float: none;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
+
+/* ===== SPECIFICITY EXAMPLES ===== */
+
+/* Specificity: 0,0,0,1 */
+.example1 {
+  color: red;
+}
+
+/* Specificity: 0,0,2,1 */
+.example1.special {
+  color: blue;
+}
+
+/* Specificity: 0,1,0,0 */
+#example2 {
+  color: green;
+}
+
+/* Specificity: 0,0,1,0 - Will NOT override #example2 */
+.example2 {
+  color: yellow;
+}
+
+/* Inline styles have highest specificity: 1,0,0,0 */
+/* <div style="color: purple;">Text</div> */
+
+/* !important - Highest specificity (avoid using!) */
+/* Specificity: Infinity (breaks cascade) */
+.important {
+  color: black !important;
+}
