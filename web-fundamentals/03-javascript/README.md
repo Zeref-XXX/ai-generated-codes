@@ -1,12 +1,13 @@
 # JavaScript Folder Guide
 
-Your main focus: fundamentals → DOM → advanced → async.
+Your main focus: control flow → fundamentals → DOM → advanced → async.
 
 ## Order
-1. fundamentals.js — Variables, functions, scope/closures, arrays/objects
-2. dom-manipulation.js — Select/update DOM, events, delegation, storage
-3. advanced-concepts.js — Prototypes, classes, this, generators, Proxy
-4. async-advanced.js — Event loop, callbacks, promises, async/await, fetch
+1. control-flow.js — Loops (for, while, for...of) & conditionals (if/else, switch)
+2. fundamentals.js — Variables, functions, scope/closures, arrays/objects
+3. dom-manipulation.js — Select/update DOM, events, delegation, storage
+4. advanced-concepts.js — Prototypes, classes, this, generators, Proxy
+5. async-advanced.js — Event loop, callbacks, promises, async/await, fetch
 
 ## Outcomes
 - Strong foundation in core JS and DOM APIs

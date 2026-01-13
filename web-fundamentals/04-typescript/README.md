@@ -6,8 +6,9 @@ Your second focus: types, generics, and real-world utilities.
 
 ## Order
 1. fundamentals.ts — Types, interfaces vs types, classes, generics, guards
-2. advanced-patterns.ts — Conditional/mapped types, infer, recursive patterns
-3. type-utilities.ts — 16 built-in utilities + 15+ custom utilities
+2. control-flow.ts — Type-safe loops, conditionals, discriminated unions, type narrowing
+3. advanced-patterns.ts — Conditional/mapped types, infer, recursive patterns
+4. type-utilities.ts — 16 built-in utilities + 15+ custom utilities
 
 ## Outcomes
 - Type any JavaScript confidently
