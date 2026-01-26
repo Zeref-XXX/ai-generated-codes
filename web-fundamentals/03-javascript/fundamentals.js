@@ -78,11 +78,11 @@ const null_var = null;
 const symbol = Symbol("unique");
 
 // Type coercion
-console.log("5" + 3); // "53" (string concatenation)
-console.log("5" - 3); // 2 (numeric conversion)
-console.log(true + 1); // 2 (true converts to 1)
-console.log(Boolean(0)); // false
-console.log(Boolean("text")); // true
+console.log("5" + 3); // OUTPUT: "53" (string concatenation)
+console.log("5" - 3); // OUTPUT: 2 (numeric conversion)
+console.log(true + 1); // OUTPUT: 2 (true converts to 1)
+console.log(Boolean(0)); // OUTPUT: false
+console.log(Boolean("text")); // OUTPUT: true
 
 // ===== OBJECTS AND ARRAYS =====
 
@@ -155,7 +155,7 @@ function outer(x) {
 }
 
 const addFive = outer(5);
-console.log(addFive(3)); // 8
+console.log(addFive(3)); // OUTPUT: 8
 
 // Counter example
 function createCounter() {
@@ -168,8 +168,9 @@ function createCounter() {
 }
 
 const counter = createCounter();
-counter.increment(); // 1
-counter.increment(); // 2
+console.log(counter.increment()); // OUTPUT: 1
+console.log(counter.increment()); // OUTPUT: 2
+console.log(counter.getCount()); // OUTPUT: 2
 
 // ===== HIGHER-ORDER FUNCTIONS =====
 // Functions that take or return other functions
@@ -182,49 +183,57 @@ function map(array, callback) {
   return result;
 }
 
-const doubled = map([1, 2, 3], x => x * 2); // [2, 4, 6]
+const doubled = map([1, 2, 3], x => x * 2);
+console.log(doubled); // OUTPUT: [2, 4, 6]
 
 // Function composition
 const compose = (f, g) => x => f(g(x));
 const addOne = x => x + 1;
 const double = x => x * 2;
 const addOneThenDouble = compose(double, addOne);
-console.log(addOneThenDouble(5)); // (5 + 1) * 2 = 12
+console.log(addOneThenDouble(5)); // OUTPUT: 12 ((5 + 1) * 2 = 12)
 
 // ===== ARRAY METHODS =====
 
 const nums = [1, 2, 3, 4, 5];
 
 // Map - transform each element
-const squared = nums.map(n => n * n); // [1, 4, 9, 16, 25]
+const squared = nums.map(n => n * n);
+console.log(squared); // OUTPUT: [1, 4, 9, 16, 25]
 
 // Filter - keep elements matching condition
-const evens = nums.filter(n => n % 2 === 0); // [2, 4]
+const evens = nums.filter(n => n % 2 === 0);
+console.log(evens); // OUTPUT: [2, 4]
 
 // Reduce - accumulate values
-const sum_result = nums.reduce((acc, n) => acc + n, 0); // 15
+const sum_result = nums.reduce((acc, n) => acc + n, 0);
+console.log(sum_result); // OUTPUT: 15
 
 // Find - get first matching element
-const firstEven = nums.find(n => n % 2 === 0); // 2
+const firstEven = nums.find(n => n % 2 === 0);
+console.log(firstEven); // OUTPUT: 2
 
 // Some/Every - boolean checks
-const hasEven = nums.some(n => n % 2 === 0); // true
-const allPositive = nums.every(n => n > 0); // true
+const hasEven = nums.some(n => n % 2 === 0);
+console.log(hasEven); // OUTPUT: true
+const allPositive = nums.every(n => n > 0);
+console.log(allPositive); // OUTPUT: true
 
 // ForEach - execute function for each element
-nums.forEach((n, i) => console.log(`Index ${i}: ${n}`));
+nums.forEach((n, i) => console.log(`Index ${i}: ${n}`)); // OUTPUT: Index 0: 1, Index 1: 2, Index 2: 3, Index 3: 4, Index 4: 5
 
 // Includes - check if element exists
-const hasFive = nums.includes(5); // true
+const hasFive = nums.includes(5);
+console.log(hasFive); // OUTPUT: true
 
 // ===== OBJECTS =====
 
 // Object methods
 const obj = { a: 1, b: 2, c: 3 };
 
-Object.keys(obj); // ["a", "b", "c"]
-Object.values(obj); // [1, 2, 3]
-Object.entries(obj); // [["a", 1], ["b", 2], ["c", 3]]
+console.log(Object.keys(obj)); // OUTPUT: ["a", "b", "c"]
+console.log(Object.values(obj)); // OUTPUT: [1, 2, 3]
+console.log(Object.entries(obj)); // OUTPUT: [["a", 1], ["b", 2], ["c", 3]]
 
 // Object.assign - merge objects
 const merged = Object.assign({}, obj, { d: 4 });
@@ -251,14 +260,14 @@ const user = {
   }
 };
 
-console.log(user.getInfo()); // "Alice is 25"
+console.log(user.getInfo()); // OUTPUT: "Alice is 25"
 
 // Explicit context binding
 const getInfo = user.getInfo;
-console.log(getInfo.call(user)); // "Alice is 25"
-console.log(getInfo.apply(user, [])); // "Alice is 25"
+console.log(getInfo.call(user)); // OUTPUT: "Alice is 25"
+console.log(getInfo.apply(user, [])); // OUTPUT: "Alice is 25"
 const boundGetInfo = getInfo.bind(user);
-console.log(boundGetInfo()); // "Alice is 25"
+console.log(boundGetInfo()); // OUTPUT: "Alice is 25"
 
 // ===== CALLBACKS AND PROMISES =====
 
@@ -298,13 +307,13 @@ Promise.all([
   Promise.resolve(1),
   Promise.resolve(2),
   Promise.resolve(3)
-]).then(results => console.log(results)); // [1, 2, 3]
+]).then(results => console.log(results)); // OUTPUT: [1, 2, 3]
 
 // Promise.race - wait for first promise
 Promise.race([
   Promise.resolve(1),
   Promise.resolve(2)
-]).then(result => console.log(result)); // 1
+]).then(result => console.log(result)); // OUTPUT: 1
 
 // ===== ASYNC/AWAIT =====
 // Syntactic sugar over promises
@@ -335,14 +344,14 @@ async function getMultiple() {
 // ===== SCOPE AND HOISTING =====
 
 // Hoisting - var and function declarations are hoisted
-console.log(hoistedVar); // undefined (declaration hoisted, not assignment)
+console.log(hoistedVar); // OUTPUT: undefined (declaration hoisted, not assignment)
 var hoistedVar = "value";
 
 // let and const are hoisted but not initialized (temporal dead zone)
 // console.log(hoistedLet); // ReferenceError
 let hoistedLet = "value";
 
-hoistedFunction(); // Works! Function declarations are fully hoisted
+hoistedFunction(); // OUTPUT: "Function hoisted" - Works! Function declarations are fully hoisted
 function hoistedFunction() {
   console.log("Function hoisted");
 }
@@ -408,10 +417,10 @@ try {
 const regex = /hello/i; // case-insensitive
 const regex2 = new RegExp("hello", "i");
 
-"Hello World".match(/hello/i); // Matches
-"Hello World".test(/hello/i); // true
-"Hello World".replace(/hello/i, "Hi"); // "Hi World"
-"a,b,c".split(","); // ["a", "b", "c"]
+console.log("Hello World".match(/hello/i)); // OUTPUT: ["Hello"]
+console.log("Hello World".test(/hello/i)); // OUTPUT: true
+console.log("Hello World".replace(/hello/i, "Hi")); // OUTPUT: "Hi World"
+console.log("a,b,c".split(",")); // OUTPUT: ["a", "b", "c"]
 
 // Pattern examples
 /\d+/; // One or more digits
@@ -425,8 +434,11 @@ const regex2 = new RegExp("hello", "i");
 // ===== JSON =====
 
 const jsonString = '{"name":"John","age":30}';
-const parsed = JSON.parse(jsonString); // Convert to object
-const stringified = JSON.stringify(parsed); // Convert to JSON string
+const parsed = JSON.parse(jsonString);
+console.log(parsed); // OUTPUT: { name: 'John', age: 30 }
+
+const stringified = JSON.stringify(parsed);
+console.log(stringified); // OUTPUT: '{"name":"John","age":30}'
 
 // With replacer and spaces
-JSON.stringify(parsed, null, 2); // Pretty-printed with 2 spaces
+console.log(JSON.stringify(parsed, null, 2)); // OUTPUT: Pretty-printed JSON with 2-space indentation

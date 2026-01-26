@@ -48,8 +48,8 @@ function checkAge(age) {
   return "Minor";
 }
 
-console.log(checkAge(25)); // "Adult"
-console.log(checkAge(15)); // "Minor"
+console.log(checkAge(25)); // OUTPUT: "Adult"
+console.log(checkAge(15)); // OUTPUT: "Minor"
 
 // if...else statement
 function checkTemperature(temp) {
@@ -75,9 +75,9 @@ function gradeCalculator(score) {
   }
 }
 
-console.log(gradeCalculator(95)); // "A"
-console.log(gradeCalculator(75)); // "C"
-console.log(gradeCalculator(55)); // "F"
+console.log(gradeCalculator(95)); // OUTPUT: "A"
+console.log(gradeCalculator(75)); // OUTPUT: "C"
+console.log(gradeCalculator(55)); // OUTPUT: "F"
 
 // Multiple conditions with logical operators
 function canVote(age, isCitizen) {
@@ -88,8 +88,8 @@ function canVote(age, isCitizen) {
   }
 }
 
-console.log(canVote(20, true));  // "Can vote"
-console.log(canVote(20, false)); // "Cannot vote"
+console.log(canVote(20, true));  // OUTPUT: "Can vote"
+console.log(canVote(20, false)); // OUTPUT: "Cannot vote"
 
 // Complex conditions
 function checkDiscount(age, isMember, purchaseAmount) {
@@ -128,16 +128,16 @@ function checkAccess(role, isVerified, hasPermission) {
 // Basic ternary
 const age = 20;
 const status = age >= 18 ? "Adult" : "Minor";
-console.log(status); // "Adult"
+console.log(status); // OUTPUT: "Adult"
 
 // Ternary in function
 function getTicketPrice(age) {
   return age < 12 ? 5 : age >= 65 ? 7 : 10;
 }
 
-console.log(getTicketPrice(10));  // 5
-console.log(getTicketPrice(30));  // 10
-console.log(getTicketPrice(70));  // 7
+console.log(getTicketPrice(10));  // OUTPUT: 5
+console.log(getTicketPrice(30));  // OUTPUT: 10
+console.log(getTicketPrice(70));  // OUTPUT: 7
 
 // Ternary for assignment
 const user = { name: "John", isAdmin: true };
@@ -169,8 +169,8 @@ function getDayName(dayNumber) {
   }
 }
 
-console.log(getDayName(0)); // "Sunday"
-console.log(getDayName(5)); // "Friday"
+console.log(getDayName(0)); // OUTPUT: "Sunday"
+console.log(getDayName(5)); // OUTPUT: "Friday"
 
 // Switch with fall-through (intentional, no break)
 function getSeason(month) {
@@ -196,8 +196,8 @@ function getSeason(month) {
   }
 }
 
-console.log(getSeason("January")); // "Winter"
-console.log(getSeason("July"));    // "Summer"
+console.log(getSeason("January")); // OUTPUT: "Winter"
+console.log(getSeason("July"));    // OUTPUT: "Summer"
 
 // Switch with expressions
 function calculate(operator, a, b) {
@@ -215,8 +215,8 @@ function calculate(operator, a, b) {
   }
 }
 
-console.log(calculate("+", 5, 3)); // 8
-console.log(calculate("*", 4, 7)); // 28
+console.log(calculate("+", 5, 3)); // OUTPUT: 8
+console.log(calculate("*", 4, 7)); // OUTPUT: 28
 
 // ============================================================================
 // 4️⃣ FOR LOOPS - MOST COMMON LOOP
@@ -225,26 +225,27 @@ console.log(calculate("*", 4, 7)); // 28
 // Basic for loop
 console.log("Count from 1 to 5:");
 for (let i = 1; i <= 5; i++) {
-  console.log(i);
+  console.log(i); // OUTPUT: 1, 2, 3, 4, 5 (each on new line)
 }
 
 // Loop through array
 const fruits = ["apple", "banana", "cherry"];
 for (let i = 0; i < fruits.length; i++) {
   console.log(`Index ${i}: ${fruits[i]}`);
+  // OUTPUT: Index 0: apple, Index 1: banana, Index 2: cherry
 }
 
 // Loop in reverse
 console.log("Countdown:");
 for (let i = 5; i >= 1; i--) {
-  console.log(i);
+  console.log(i); // OUTPUT: 5, 4, 3, 2, 1
 }
-console.log("Blast off!");
+console.log("Blast off!"); // OUTPUT: "Blast off!"
 
 // Loop with step
 console.log("Even numbers from 0 to 10:");
 for (let i = 0; i <= 10; i += 2) {
-  console.log(i);
+  console.log(i); // OUTPUT: 0, 2, 4, 6, 8, 10
 }
 
 // Nested for loops
@@ -255,6 +256,7 @@ for (let i = 1; i <= 5; i++) {
     row += `${i * j}\t`;
   }
   console.log(row);
+  // OUTPUT: 1 2 3 4 5 / 2 4 6 8 10 / 3 6 9 12 15 / etc.
 }
 
 // Loop with array methods
@@ -263,7 +265,7 @@ let sum = 0;
 for (let i = 0; i < numbers.length; i++) {
   sum += numbers[i];
 }
-console.log(`Sum: ${sum}`); // Sum: 15
+console.log(`Sum: ${sum}`); // OUTPUT: "Sum: 15"
 
 // ============================================================================
 // 5️⃣ WHILE LOOPS - CONDITION-BASED ITERATION
@@ -272,7 +274,7 @@ console.log(`Sum: ${sum}`); // Sum: 15
 // Basic while loop
 let count = 1;
 while (count <= 5) {
-  console.log(`Count: ${count}`);
+  console.log(`Count: ${count}`); // OUTPUT: Count: 1, Count: 2, ... Count: 5
   count++;
 }
 
@@ -280,7 +282,7 @@ while (count <= 5) {
 const items = ["a", "b", "c"];
 let index = 0;
 while (index < items.length) {
-  console.log(items[index]);
+  console.log(items[index]); // OUTPUT: a, b, c
   index++;
 }
 
@@ -296,7 +298,7 @@ function findFirstEven(numbers) {
   return null;
 }
 
-console.log(findFirstEven([1, 3, 7, 8, 9])); // 8
+console.log(findFirstEven([1, 3, 7, 8, 9])); // OUTPUT: 8
 
 // While loop with complex condition
 function readUntilEmpty(arr) {
@@ -314,7 +316,7 @@ function readUntilEmpty(arr) {
 // Basic do-while (executes at least once)
 let num = 1;
 do {
-  console.log(num);
+  console.log(num); // OUTPUT: 1, 2, 3, 4, 5
   num++;
 } while (num <= 5);
 
@@ -329,7 +331,7 @@ while (x < 5) {
 // This do-while executes once even though condition is false
 let y = 10;
 do {
-  console.log("Will print once"); // Executes!
+  console.log("Will print once"); // OUTPUT: "Will print once"
   y++;
 } while (y < 5);
 
@@ -349,13 +351,13 @@ function getValidInput() {
 // For...of with arrays (PREFERRED for arrays)
 const colors = ["red", "green", "blue"];
 for (const color of colors) {
-  console.log(color);
+  console.log(color); // OUTPUT: red, green, blue
 }
 
 // For...of with strings
 const word = "Hello";
 for (const char of word) {
-  console.log(char);
+  console.log(char); // OUTPUT: H, e, l, l, o
 }
 
 // For...of with array of objects
@@ -367,6 +369,7 @@ const users = [
 
 for (const user of users) {
   console.log(`${user.name} is ${user.age} years old`);
+  // OUTPUT: Alice is 25 years old, Bob is 30 years old, Charlie is 35 years old
 }
 
 // For...of with destructuring
@@ -377,12 +380,13 @@ const people = [
 
 for (const { name, role } of people) {
   console.log(`${name} - ${role}`);
+  // OUTPUT: Alice - Developer, Bob - Designer
 }
 
 // For...of with Sets
 const uniqueNumbers = new Set([1, 2, 3, 4, 5]);
 for (const num of uniqueNumbers) {
-  console.log(num);
+  console.log(num); // OUTPUT: 1, 2, 3, 4, 5
 }
 
 // For...of with Maps
@@ -392,7 +396,7 @@ const userMap = new Map([
 ]);
 
 for (const [key, value] of userMap) {
-  console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`); // OUTPUT: user1: Alice, user2: Bob
 }
 
 // ============================================================================
@@ -408,6 +412,7 @@ const person = {
 
 for (const key in person) {
   console.log(`${key}: ${person[key]}`);
+  // OUTPUT: name: John, age: 30, city: New York
 }
 
 // For...in with own properties check
@@ -416,7 +421,7 @@ Object.prototype.inherited = "I'm inherited";
 
 for (const key in obj) {
   if (obj.hasOwnProperty(key)) {
-    console.log(`${key}: ${obj[key]}`);
+    console.log(`${key}: ${obj[key]}`); // OUTPUT: a: 1, b: 2
   }
 }
 
@@ -446,7 +451,7 @@ function findNumber(arr, target) {
   }
 }
 
-findNumber([1, 2, 3, 4, 5], 3); // Found 3 at index 2
+findNumber([1, 2, 3, 4, 5], 3); // OUTPUT: "Found 3 at index 2"
 
 // Continue - skip current iteration
 console.log("Print only odd numbers:");
@@ -454,7 +459,7 @@ for (let i = 1; i <= 10; i++) {
   if (i % 2 === 0) {
     continue; // Skip even numbers
   }
-  console.log(i);
+  console.log(i); // OUTPUT: 1, 3, 5, 7, 9
 }
 
 // Break in nested loops
@@ -477,7 +482,7 @@ const matrix = [
   [4, 5, 6],
   [7, 8, 9]
 ];
-findInMatrix(matrix, 5);
+findInMatrix(matrix, 5); // OUTPUT: "Found at [1][1]"
 
 // Continue with condition
 const scores = [45, 67, 89, 34, 92, 78];
@@ -486,7 +491,7 @@ for (const score of scores) {
   if (score < 50) {
     continue; // Skip failing scores
   }
-  console.log(score);
+  console.log(score); // OUTPUT: 67, 89, 92, 78
 }
 
 // ============================================================================
@@ -522,13 +527,13 @@ outerLoop2: for (let i = 0; i < 3; i++) {
 console.log("FizzBuzz:");
 for (let i = 1; i <= 20; i++) {
   if (i % 3 === 0 && i % 5 === 0) {
-    console.log("FizzBuzz");
+    console.log("FizzBuzz"); // 15
   } else if (i % 3 === 0) {
-    console.log("Fizz");
+    console.log("Fizz"); // 3, 6, 9, 12, 18
   } else if (i % 5 === 0) {
-    console.log("Buzz");
+    console.log("Buzz"); // 5, 10, 20
   } else {
-    console.log(i);
+    console.log(i); // 1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19
   }
 }
 
@@ -548,7 +553,7 @@ function isPrime(num) {
 console.log("Prime numbers from 1 to 20:");
 for (let i = 1; i <= 20; i++) {
   if (isPrime(i)) {
-    console.log(i);
+    console.log(i); // OUTPUT: 2, 3, 5, 7, 11, 13, 17, 19
   }
 }
 
@@ -563,7 +568,7 @@ function sumEvenNumbers(arr) {
   return sum;
 }
 
-console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6])); // 12
+console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6])); // OUTPUT: 12
 
 // Example 4: Nested loops - Pattern printing
 console.log("Right triangle pattern:");
@@ -573,6 +578,7 @@ for (let i = 1; i <= 5; i++) {
     pattern += "* ";
   }
   console.log(pattern);
+  // OUTPUT: *, *, *, *, *, *, *, *, *, *, *, *, *, *, *
 }
 
 // Example 5: Object validation
@@ -592,7 +598,7 @@ function validateUser(user) {
   return "Valid user";
 }
 
-console.log(validateUser({ name: "John", email: "john@example.com", age: 25 }));
+console.log(validateUser({ name: "John", email: "john@example.com", age: 25 })); // OUTPUT: "Valid user"
 
 // Example 6: Search and filter
 function searchProducts(products, query) {
@@ -613,7 +619,7 @@ const products = [
   { name: "MacBook", price: 1299 }
 ];
 
-console.log(searchProducts(products, "iP"));
+console.log(searchProducts(products, "iP")); // OUTPUT: [{ name: "iPhone", price: 999 }, { name: "iPad", price: 799 }]
 
 // Example 7: Factorial with while loop
 function factorial(n) {
@@ -631,7 +637,7 @@ function factorial(n) {
   return result;
 }
 
-console.log(`5! = ${factorial(5)}`); // 120
+console.log(`5! = ${factorial(5)}`); // OUTPUT: "5! = 120"
 
 // Example 8: Count occurrences
 function countOccurrences(arr, target) {
@@ -646,7 +652,7 @@ function countOccurrences(arr, target) {
   return count;
 }
 
-console.log(countOccurrences([1, 2, 3, 2, 4, 2], 2)); // 3
+console.log(countOccurrences([1, 2, 3, 2, 4, 2], 2)); // OUTPUT: 3
 
 // ============================================================================
 // 📝 BEST PRACTICES SUMMARY

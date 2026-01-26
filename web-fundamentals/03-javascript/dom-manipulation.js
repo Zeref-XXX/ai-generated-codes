@@ -230,7 +230,7 @@ el.style.removeProperty("color");
 
 // Add event listener
 el.addEventListener("click", function(event) {
-  console.log("Clicked!");
+  console.log("Clicked!"); // OUTPUT: "Clicked!"
 });
 
 // Add with options
@@ -285,7 +285,7 @@ element.addEventListener("touchmove", handler);
 const list = document.querySelector("ul");
 list.addEventListener("click", function(event) {
   if (event.target.tagName === "LI") {
-    console.log("Clicked list item:", event.target);
+    console.log("Clicked list item:", event.target); // OUTPUT: Clicked list item: <li>...</li>
   }
 });
 
@@ -330,13 +330,13 @@ window.history; // Browser history
 
 // setTimeout - execute after delay
 const timeoutId = setTimeout(() => {
-  console.log("After 1 second");
+  console.log("After 1 second"); // OUTPUT: "After 1 second"
 }, 1000);
 clearTimeout(timeoutId); // Cancel
 
 // setInterval - execute repeatedly
 const intervalId = setInterval(() => {
-  console.log("Every 2 seconds");
+  console.log("Every 2 seconds"); // OUTPUT: "Every 2 seconds" (repeats every 2s)
 }, 2000);
 clearInterval(intervalId); // Cancel
 

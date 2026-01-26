@@ -112,7 +112,7 @@ function loadData(callback) {
 }
 
 loadData((data) => {
-  console.log("Data received:", data);
+  console.log("Data received:", data); // OUTPUT: { id: 1, name: "John" }
 });
 
 // Callback with error handling
@@ -128,9 +128,9 @@ function loadDataWithError(callback) {
 
 loadDataWithError((error, data) => {
   if (error) {
-    console.error("Error:", error.message);
+    console.error("Error:", error.message); // OUTPUT: "Error: Failed to load" (if random > 0.5)
   } else {
-    console.log("Data:", data);
+    console.log("Data:", data); // OUTPUT: { id: 1, name: "John" }
   }
 });
 
@@ -177,18 +177,18 @@ const promise = new Promise((resolve, reject) => {
 // Consuming a promise
 promise
   .then((data) => {
-    console.log("Success:", data);
+    console.log("Success:", data); // OUTPUT: { id: 1, name: "John" }
     return data.id; // Can chain promises
   })
   .then((id) => {
-    console.log("ID:", id);
+    console.log("ID:", id); // OUTPUT: 1
     return id; // Continue chain
   })
   .catch((error) => {
-    console.error("Error:", error.message);
+    console.error("Error:", error.message); // OUTPUT: "Error: Failed to load" (if rejected)
   })
   .finally(() => {
-    console.log("Done!"); // Executes regardless
+    console.log("Done!"); // OUTPUT: "Done!" (always executes)
   });
 
 // Promise states
@@ -202,7 +202,7 @@ const p3 = new Promise((resolve) => {
 // Promise.all - wait for all promises
 Promise.all([p1, p3])
   .then((results) => {
-    console.log("All resolved:", results); // ["Success", "Done"]
+    console.log("All resolved:", results); // OUTPUT: ["Success", "Done"]
   })
   .catch((error) => {
     console.error("One failed:", error);
@@ -213,9 +213,9 @@ Promise.allSettled([p1, p2, p3])
   .then((results) => {
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        console.log("Resolved:", result.value);
+        console.log("Resolved:", result.value); // OUTPUT: "Success", "Done"
       } else {
-        console.log("Rejected:", result.reason);
+        console.log("Rejected:", result.reason); // OUTPUT: Error object
       }
     });
   });
@@ -223,31 +223,32 @@ Promise.allSettled([p1, p2, p3])
 // Promise.race - wait for first promise
 Promise.race([p3, p1])
   .then((result) => {
-    console.log("First completed:", result);
+    console.log("First completed:", result); // OUTPUT: "Success" (p1 usually wins unless p3 is faster)
   });
 
 // Promise.any - wait for first fulfilled
 Promise.any([p2, p1, p3])
   .then((result) => {
-    console.log("First fulfilled:", result);
+    console.log("First fulfilled:", result); // OUTPUT: "Success"
   })
   .catch((error) => {
-    console.log("All rejected:", error);
+    console.log("All rejected:", error); // If all promises reject
   });
 
 // Chaining promises (sequential)
 fetch("https://api.example.com/user")
   .then((response) => response.json())
   .then((user) => {
-    console.log("User:", user);
+    console.log("User:", user); // OUTPUT: User object from API
     return fetch(`https://api.example.com/posts/${user.id}`);
   })
   .then((response) => response.json())
   .then((posts) => {
-    console.log("Posts:", posts);
+    console.log("Posts:", posts); // OUTPUT: Array of posts
   })
   .catch((error) => {
     console.error("Error in chain:", error);
+  });
   });
 
 // ===== ASYNC/AWAIT =====
@@ -259,7 +260,7 @@ async function getUserData() {
 
 // Async functions return promises
 getUserData().then((data) => {
-  console.log("Data:", data);
+  console.log("Data:", data); // OUTPUT: { id: 1, name: "John" }
 });
 
 // Await pauses execution until promise resolves
@@ -270,7 +271,7 @@ async function getAndProcessUser() {
     const user = await response.json();
 
     // Use result immediately (no .then needed!)
-    console.log("User:", user);
+    console.log("User:", user); // OUTPUT: User object
 
     // Another async operation
     const postsResponse = await fetch(
@@ -278,21 +279,21 @@ async function getAndProcessUser() {
     );
     const posts = await postsResponse.json();
 
-    console.log("Posts:", posts);
+    console.log("Posts:", posts); // OUTPUT: Array of posts
 
     return { user, posts };
   } catch (error) {
     console.error("Error:", error);
     throw error; // Re-throw if needed
   } finally {
-    console.log("Request completed"); // Cleanup code
+    console.log("Request completed"); // OUTPUT: Cleanup code (always executes)
   }
 }
 
 // Call async function
 getAndProcessUser()
   .then((result) => {
-    console.log("Final result:", result);
+    console.log("Final result:", result); // OUTPUT: { user, posts }
   });
 
 // ASYNC/AWAIT ADVANTAGES:

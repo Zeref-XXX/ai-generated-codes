@@ -233,7 +233,7 @@ function create<T>(constructor: new (...args: any[]) => T): T {
 
 class MyClass {
   constructor() {
-    console.log("Created");
+    console.log("Created"); // OUTPUT: "Created" (when instance is created)
   }
 }
 
@@ -314,7 +314,7 @@ class Subject {
 
 class ConcreteObserver implements Observer {
   update(data: unknown): void {
-    console.log("Updated:", data);
+    console.log("Updated:", data); // OUTPUT: "Updated: {data}"
   }
 }
 
@@ -387,13 +387,13 @@ interface Animal {
 
 class Dog implements Animal {
   speak(): void {
-    console.log("Woof");
+    console.log("Woof"); // OUTPUT: "Woof"
   }
 }
 
 class Cat implements Animal {
   speak(): void {
-    console.log("Meow");
+    console.log("Meow"); // OUTPUT: "Meow"
   }
 }
 
@@ -433,7 +433,7 @@ class Database {
 
 const db1 = Database.getInstance();
 const db2 = Database.getInstance();
-console.log(db1 === db2); // true
+console.log(db1 === db2); // OUTPUT: true (both refer to same instance)
 
 // ===== TYPE-SAFE EVENT EMITTER =====
 
@@ -462,7 +462,7 @@ class TypedEventEmitter<T extends Record<string, unknown>> {
 const emitter = new TypedEventEmitter<EventMap>();
 
 emitter.on("user:created", (data) => {
-  console.log(data.id, data.name); // Type-safe
+  console.log(data.id, data.name); // OUTPUT: 1 John (type-safe access)
 });
 
 emitter.emit("user:created", { id: 1, name: "John" }); // Type-safe
@@ -478,7 +478,7 @@ async function* asyncGenerator(): AsyncGenerator<number> {
 
 async function consumeAsync() {
   for await (const value of asyncGenerator()) {
-    console.log(value);
+    console.log(value); // OUTPUT: 1, 2, 3 (each with 100ms delay)
   }
 }
 

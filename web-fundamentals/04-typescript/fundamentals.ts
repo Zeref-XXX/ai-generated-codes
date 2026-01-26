@@ -136,7 +136,7 @@ function infiniteLoop(): never {
 
 // Void - function returns nothing
 function logMessage(msg: string): void {
-  console.log(msg);
+  console.log(msg); // OUTPUT: Message passed as argument
 }
 
 // ===== UNION AND INTERSECTION TYPES =====
@@ -234,7 +234,7 @@ class Animal {
   }
 
   speak(): void {
-    console.log(`${this.name} makes a sound`);
+    console.log(`${this.name} makes a sound`); // OUTPUT: "{name} makes a sound"
   }
 }
 
@@ -260,7 +260,7 @@ class Dog extends Animal {
   }
 
   public bark(): void {
-    console.log(`${this.name} barks!`);
+    console.log(`${this.name} barks!`); // OUTPUT: "{name} barks!"
   }
 }
 
@@ -322,7 +322,7 @@ abstract class Shape {
   abstract getArea(): number;
 
   describe(): void {
-    console.log(`This shape has area: ${this.getArea()}`);
+    console.log(`This shape has area: ${this.getArea()}`); // OUTPUT: "This shape has area: {area}"
   }
 }
 
@@ -486,7 +486,7 @@ function logMethod(target: any, key: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
 
   descriptor.value = function(...args: any[]) {
-    console.log(`Calling ${key} with args:`, args);
+    console.log(`Calling ${key} with args:`, args); // OUTPUT: "Calling {methodName} with args: {args}"
     return originalMethod.apply(this, args);
   };
 
