@@ -415,7 +415,7 @@ type UserEvents = {
 const userObservable = new Observable<UserEvents>();
 userObservable.on("nameChanged", (newName) => {
   // newName is typed as string
-  console.log("Name changed to:", newName);
+  console.log("Name changed to:", newName); // OUTPUT: "Name changed to: {newName}"
 });
 
 // Redux-like store

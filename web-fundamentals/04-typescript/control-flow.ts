@@ -43,8 +43,8 @@ function processValue(value: string | number): string {
   }
 }
 
-console.log(processValue("hello")); // "HELLO"
-console.log(processValue(42.12345)); // "42.12"
+console.log(processValue("hello")); // OUTPUT: "HELLO"
+console.log(processValue(42.12345)); // OUTPUT: "42.12"
 
 // Type narrowing with instanceof
 class Dog {
@@ -171,8 +171,8 @@ function getArea(shape: Shape): number {
 // Usage
 const circle: Shape = { kind: "circle", radius: 5 };
 const rectangle: Shape = { kind: "rectangle", width: 10, height: 5 };
-console.log(getArea(circle)); // 78.54
-console.log(getArea(rectangle)); // 50
+console.log(getArea(circle)); // OUTPUT: 78.54
+console.log(getArea(rectangle)); // OUTPUT: 50
 
 // Exhaustive check with never
 type Action =
@@ -223,19 +223,19 @@ function handleState(state: LoadingState): string {
 const numbers: number[] = [1, 2, 3, 4, 5];
 for (let i = 0; i < numbers.length; i++) {
   const num: number = numbers[i];
-  console.log(num * 2);
+  console.log(num * 2); // OUTPUT: 2, 4, 6, 8, 10
 }
 
 // For...of with typed arrays
 const names: string[] = ["Alice", "Bob", "Charlie"];
 for (const name of names) {
-  console.log(name.toUpperCase()); // TypeScript knows name is string
+  console.log(name.toUpperCase()); // OUTPUT: ALICE, BOB, CHARLIE (TypeScript knows name is string)
 }
 
 // For...of with readonly arrays
 const readonlyNumbers: ReadonlyArray<number> = [1, 2, 3];
 for (const num of readonlyNumbers) {
-  console.log(num);
+  console.log(num); // OUTPUT: 1, 2, 3
   // num = 10; // Error: cannot assign to const
 }
 
@@ -244,13 +244,13 @@ type Point = [number, number];
 const points: Point[] = [[0, 0], [1, 1], [2, 2]];
 
 for (const [x, y] of points) {
-  console.log(`Point: (${x}, ${y})`);
+  console.log(`Point: (${x}, ${y})`); // OUTPUT: Point: (0, 0), Point: (1, 1), Point: (2, 2)
 }
 
 // For...of with Set
 const uniqueIds: Set<number> = new Set([1, 2, 3, 4, 5]);
 for (const id of uniqueIds) {
-  console.log(id); // TypeScript knows id is number
+  console.log(id); // OUTPUT: 1, 2, 3, 4, 5 (TypeScript knows id is number)
 }
 
 // For...of with Map
@@ -260,7 +260,7 @@ const userMap: Map<string, number> = new Map([
 ]);
 
 for (const [name, age] of userMap) {
-  console.log(`${name} is ${age} years old`);
+  console.log(`${name} is ${age} years old`); // OUTPUT: Alice is 25 years old, Bob is 30 years old
 }
 
 // ============================================================================
@@ -284,19 +284,19 @@ const person: Person = {
 for (const key in person) {
   // key is string, need type assertion for safety
   const value = person[key as keyof Person];
-  console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`); // OUTPUT: name: John, age: 30, city: New York
 }
 
 // Better approach: Object.entries
 for (const [key, value] of Object.entries(person)) {
-  console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`); // OUTPUT: name: John, age: 30, city: New York
 }
 
 // Type-safe object keys iteration
 const keys = Object.keys(person) as Array<keyof Person>;
 for (const key of keys) {
   const value: string | number = person[key];
-  console.log(`${key}: ${value}`);
+  console.log(`${key}: ${value}`); // OUTPUT: name: John, age: 30, city: New York
 }
 
 // Object.entries with type safety
@@ -305,9 +305,9 @@ const userData: UserData = { name: "Alice", age: 25, score: 95 };
 
 for (const [key, value] of Object.entries(userData)) {
   if (typeof value === "number") {
-    console.log(`${key}: ${value.toFixed(2)}`);
+    console.log(`${key}: ${value.toFixed(2)}`); // OUTPUT: "age: 25.00", "score: 95.00"
   } else {
-    console.log(`${key}: ${value.toUpperCase()}`);
+    console.log(`${key}: ${value.toUpperCase()}`); // OUTPUT: "name: ALICE"
   }
 }
 
@@ -328,9 +328,9 @@ function processItem<T>(item: T): string {
   }
 }
 
-console.log(processItem("hello")); // "HELLO"
-console.log(processItem(42.123)); // "42.12"
-console.log(processItem([1, 2, 3])); // "Array of 3 items"
+console.log(processItem("hello")); // OUTPUT: "HELLO"
+console.log(processItem(42.123)); // OUTPUT: "42.12"
+console.log(processItem([1, 2, 3])); // OUTPUT: "Array of 3 items"
 
 // Type guard with generics
 function isArrayOf<T>(value: unknown, check: (item: any) => item is T): value is T[] {
@@ -348,7 +348,7 @@ function isNumber(value: any): value is number {
 const mixedArray: unknown = ["a", "b", "c"];
 if (isArrayOf(mixedArray, isString)) {
   // TypeScript knows mixedArray is string[]
-  console.log(mixedArray.map(s => s.toUpperCase()));
+  console.log(mixedArray.map(s => s.toUpperCase())); // OUTPUT: ["A", "B", "C"]
 }
 
 // ============================================================================
@@ -486,7 +486,7 @@ const products: Product[] = [
   { id: 3, name: "Pizza", price: 15, category: "food" }
 ];
 
-console.log(searchProducts(products, "i", "electronics"));
+console.log(searchProducts(products, "i", "electronics")); // OUTPUT: [{ id: 1, name: "iPhone"... }]
 
 // Example 4: Type-safe state machine
 type State = "idle" | "loading" | "success" | "error";

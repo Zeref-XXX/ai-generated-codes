@@ -94,11 +94,11 @@ function Animal(name) {
 }
 
 Animal.prototype.speak = function() {
-  console.log(`${this.name} makes a sound`);
+  console.log(`${this.name} makes a sound`); // OUTPUT: "Dog makes a sound"
 };
 
 const dog = new Animal("Dog");
-dog.speak(); // "Dog makes a sound"
+dog.speak(); // OUTPUT: "Dog makes a sound"
 
 // Prototype chain: dog -> Animal.prototype -> Object.prototype -> null
 Object.getPrototypeOf(dog); // Animal.prototype
@@ -114,12 +114,12 @@ Dog.prototype = Object.create(Animal.prototype); // Set up inheritance
 Dog.prototype.constructor = Dog; // Fix constructor reference
 
 Dog.prototype.bark = function() {
-  console.log(`${this.name} barks!`);
+  console.log(`${this.name} barks!`); // OUTPUT: "Rex barks!"
 };
 
 const myDog = new Dog("Rex", "Golden Retriever");
-myDog.speak(); // Inherited from Animal
-myDog.bark(); // Own method
+myDog.speak(); // OUTPUT: "Rex makes a sound" (inherited from Animal)
+myDog.bark(); // OUTPUT: "Rex barks!" (own method)
 
 // ===== ES6 CLASSES =====
 
@@ -129,11 +129,11 @@ class Animal {
   }
 
   speak() {
-    console.log(`${this.name} makes a sound`);
+    console.log(`${this.name} makes a sound`); // OUTPUT: "{name} makes a sound"
   }
 
   static info() {
-    console.log("This is the Animal class");
+    console.log("This is the Animal class"); // OUTPUT: "This is the Animal class"
   }
 }
 
@@ -144,7 +144,7 @@ class Dog extends Animal {
   }
 
   speak() {
-    console.log(`${this.name} barks!`);
+    console.log(`${this.name} barks!`); // OUTPUT: "{name} barks!"
   }
 
   getInfo() {
@@ -375,12 +375,12 @@ const memoize = (fn) => {
 };
 
 const expensiveFunc = memoize((n) => {
-  console.log("Computing...");
+  console.log("Computing..."); // OUTPUT: "Computing..."
   return n * 2;
 });
 
-expensiveFunc(5); // Computing... 10
-expensiveFunc(5); // 10 (from cache, no log)
+expensiveFunc(5); // OUTPUT: "Computing...", returns 10
+expensiveFunc(5); // OUTPUT: 10 (from cache, no log)
 
 // ===== GENERATOR FUNCTIONS =====
 
@@ -398,7 +398,7 @@ gen.next(); // { value: undefined, done: true }
 
 // Using generators with for...of
 for (const value of simpleGenerator()) {
-  console.log(value); // 1, 2, 3
+  console.log(value); // OUTPUT: 1, 2, 3 (each on new line)
 }
 
 // Generator with logic
@@ -422,11 +422,11 @@ async function* asyncGenerator() {
 // Proxy - intercept object operations
 const handler = {
   get(target, prop) {
-    console.log(`Getting ${prop}`);
+    console.log(`Getting ${prop}`); // OUTPUT: "Getting {prop}"
     return target[prop];
   },
   set(target, prop, value) {
-    console.log(`Setting ${prop} to ${value}`);
+    console.log(`Setting ${prop} to ${value}`); // OUTPUT: "Setting {prop} to {value}"
     target[prop] = value;
     return true;
   }
@@ -434,8 +434,8 @@ const handler = {
 
 const obj = {};
 const proxy = new Proxy(obj, handler);
-proxy.name = "John"; // "Setting name to John"
-proxy.name; // "Getting name"
+proxy.name = "John"; // OUTPUT: "Setting name to John"
+proxy.name; // OUTPUT: "Getting name"
 
 // Reflect - programmatic object operations
 Reflect.get(obj, "name"); // Same as obj.name
